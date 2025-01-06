@@ -41,7 +41,7 @@ if uploaded_file is not None:
 
     # Save the model columns
     model_columns = X_train_encoded.columns
-    #joblib.dump(model_columns, '/Users/apple/downloads/eric/model_columns.pkl')
+    
 
 
     # Concatenate all processed features
@@ -88,9 +88,9 @@ if uploaded_file is not None:
     st.write(f"Best model based on Accuracy: {best_model} with Accuracy: {results[best_model]['Accuracy']:.2f}")
 
     # Save models and scaler
-    joblib.dump(scaler, '/Users/apple/downloads/eric/scaler.pkl')
-    joblib.dump(model_columns, '/Users/apple/downloads/eric/label_encoders.pkl')
-    joblib.dump(trained_models[best_model], '/Users/apple/downloads/eric/best_model.pkl')
+    joblib.dump(scaler, '/downloads/scaler.pkl')
+    joblib.dump(model_columns, '/downloads/label_encoders.pkl')
+    joblib.dump(trained_models[best_model], '/downloads/best_model.pkl')
 
     # Allow user to input new data for validation
     st.subheader("Validate New Data")
@@ -101,9 +101,9 @@ if uploaded_file is not None:
     
     if st.button('Predict'):
         # Load scaler and model
-        scaler = joblib.load('/Users/apple/downloads/eric/scaler.pkl')
-        label_encoders = joblib.load('/Users/apple/downloads/eric/label_encoders.pkl')
-        model = joblib.load('/Users/apple/downloads/eric/best_model.pkl')
+        scaler = joblib.load('/downloads/scaler.pkl')
+        label_encoders = joblib.load('/downloads/label_encoders.pkl')
+        model = joblib.load('/downloads/best_model.pkl')
         
         #print (input_df.head())
         
@@ -120,5 +120,5 @@ if uploaded_file is not None:
         # Prediction
         prediction = model.predict(X_validation_preprocessed)
         st.write('Prediction:', 'Heart Disease' if prediction[0] == 1 else 'No Heart Disease')
-        #streamlit run /Users/apple/downloads/eric/CardioDetection_Streamlit2.py
+        #streamlit run /downloads/CardioDetection_Streamlit2.py
 
