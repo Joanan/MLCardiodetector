@@ -88,9 +88,9 @@ if uploaded_file is not None:
     st.write(f"Best model based on Accuracy: {best_model} with Accuracy: {results[best_model]['Accuracy']:.2f}")
 
     # Save models and scaler
-    joblib.dump(scaler, '/downloads/scaler.pkl')
-    joblib.dump(model_columns, '/downloads/label_encoders.pkl')
-    joblib.dump(trained_models[best_model], '/downloads/best_model.pkl')
+    joblib.dump(scaler, 'scaler.pkl')
+    joblib.dump(model_columns, 'label_encoders.pkl')
+    joblib.dump(trained_models[best_model], 'best_model.pkl')
 
     # Allow user to input new data for validation
     st.subheader("Validate New Data")
@@ -101,9 +101,9 @@ if uploaded_file is not None:
     
     if st.button('Predict'):
         # Load scaler and model
-        scaler = joblib.load('/downloads/scaler.pkl')
-        label_encoders = joblib.load('/downloads/label_encoders.pkl')
-        model = joblib.load('/downloads/best_model.pkl')
+        scaler = joblib.load('scaler.pkl')
+        label_encoders = joblib.load('label_encoders.pkl')
+        model = joblib.load('best_model.pkl')
         
         #print (input_df.head())
         
